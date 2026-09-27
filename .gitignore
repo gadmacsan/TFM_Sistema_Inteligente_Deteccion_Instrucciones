@@ -1,0 +1,19 @@
+# Entorno virtual
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Datos (no subir los CSV del dataset)
+*.csv
+data/
+
+# Docker
+docker-compose.override.yml
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Configuracion local
+.env
