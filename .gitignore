@@ -1,19 +1,23 @@
-# Entorno virtual
+# Entornos y caches de Python
 venv/
 .venv/
 __pycache__/
 *.pyc
+.ipynb_checkpoints/
 
-# Datos (no subir los CSV del dataset)
+# Datasets: NUNCA al repo (pesan cientos de MB y tienen condiciones de uso)
 *.csv
 data/
 
-# Docker
+# Modelos entrenados (pueden pesar decenas de MB): se regeneran con el notebook.
+# Solo se versiona la carpeta vacia.
+models/*
+!models/.gitkeep
+
+# Secretos y configuracion local
+.env
 docker-compose.override.yml
 
-# Sistema
+# Sistema operativo
 .DS_Store
 Thumbs.db
-
-# Configuracion local
-.env

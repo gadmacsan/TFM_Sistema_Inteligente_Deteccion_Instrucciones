@@ -1,3 +1,18 @@
+x-flink-common: &flink-common
+  image: tfm-flink:1.20
+  profiles: ["flink"]
+  volumes:
+    - ./flink/jobs:/opt/job/jobs:ro
+    - ./schema_v1.py:/opt/job/schema_v1.py:ro
+    - ./models:/opt/job/models:ro
+  environment:
+    PYTHONPATH: /opt/job
+    FLINK_PROPERTIES: |
+      jobmanager.rpc.address: jobmanager
+      taskmanager.numberOfTaskSlots: 2
+      python.client.executable: python3
+      python.executable: python3
+
 services:
   kafka:
     image: apache/kafka:latest
@@ -16,3 +31,21 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+
+  # --- Flink (opcional): docker compose --profile flink up -d --build ---
+  jobmanager:
+    <<: *flink-common
+    build: ./flink
+    container_name: flink-jobmanager
+    command: jobmanager
+    ports:
+      - "8081:8081"   # Web UI de Flink
+    depends_on:
+      - kafka
+
+  taskmanager:
+    <<: *flink-common
+    container_name: flink-taskmanager
+    command: taskmanager
+    depends_on:
+      - jobmanager

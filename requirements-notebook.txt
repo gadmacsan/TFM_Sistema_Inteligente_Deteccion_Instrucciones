@@ -1,0 +1,13 @@
+# Dependencias del notebook del modelo (notebooks/01_modelo_hotpath.ipynb).
+# Instalar:  pip install -r requirements-notebook.txt
+# Para ejecutar el productor/consumidor basta con requirements.txt.
+pandas
+numpy
+scikit-learn
+matplotlib
+joblib
+skl2onnx
+onnx
+onnxruntime
+jupyter
+ipykernel
