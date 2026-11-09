@@ -7,7 +7,6 @@ CSV CICIDS2017  ->  producer.py  ->  Kafka (network-events)  ->  Flink  ->  mode
                     (replay)                                       (ventanas + UDF)
 ```
 
-> **Frase para memorizar:** *Kafka guarda, Flink calcula, ONNX decide, Grafana enseña.*
 
 | Fase | Estado | Dónde |
 |---|---|---|
